@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delaluna Answers — Support</title>
+  <meta name="description" content="Get support or manage your account data for Delaluna Answers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d12;
+      --bg2: #13131a;
+      --bg3: #1a1a24;
+      --border: rgba(255,255,255,0.08);
+      --border2: rgba(255,255,255,0.14);
+      --text: #f0eff8;
+      --text2: #9b99b4;
+      --text3: #5e5c78;
+      --accent: #c9a6ff;
+      --accent-dim: rgba(201,166,255,0.12);
+      --accent-border: rgba(201,166,255,0.3);
+      --info-bg: rgba(147,197,253,0.08);
+      --info-border: rgba(147,197,253,0.2);
+      --info-text: #93c5fd;
+      --danger: #f87171;
+      --success: #6ee7b7;
+      --radius: 10px;
+      --radius-lg: 14px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-moon { font-size: 20px; }
+    .logo-text { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--text); letter-spacing: 0.01em; }
+    .logo-badge { margin-left: auto; font-size: 11px; font-weight: 500; color: var(--text3); letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* Main layout */
+    main {
+      max-width: 560px;
+      margin: 3rem auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .page-title { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--text); margin-bottom: 0.4rem; line-height: 1.2; }
+    .page-sub { font-size: 15px; color: var(--text2); margin-bottom: 2.5rem; }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 4px;
+      gap: 4px;
+      margin-bottom: 2rem;
+    }
+    .tab {
+      flex: 1;
+      padding: 9px 16px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      border: none;
+      background: transparent;
+      color: var(--text2);
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .tab.active {
+      background: var(--bg3);
+      color: var(--text);
+      font-weight: 500;
+      border: 1px solid var(--border2);
+    }
+    .tab svg { vertical-align: -3px; margin-right: 6px; }
+
+    /* Sections */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* Fields */
+    .field { margin-bottom: 1.25rem; }
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text2);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+    .req { color: var(--danger); margin-left: 2px; }
+
+    input[type=text],
+    input[type=email],
+    select,
+    textarea {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      padding: 11px 14px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent-border); }
+    input::placeholder, textarea::placeholder { color: var(--text3); }
+    select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239b99b4' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+    select option { background: #1a1a24; }
+    textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+    /* Radio options */
+    .radio-group { display: flex; flex-direction: column; gap: 8px; }
+    .radio-opt {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      background: var(--bg2);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .radio-opt:hover { border-color: var(--border2); }
+    .radio-opt.selected { border-color: var(--accent-border); background: var(--accent-dim); }
+    .radio-opt input[type=radio] { margin-top: 3px; flex-shrink: 0; width: auto; accent-color: var(--accent); }
+    .radio-label { font-size: 14px; color: var(--text); display: block; line-height: 1.4; }
+    .radio-desc { font-size: 12px; color: var(--text2); margin-top: 3px; display: block; line-height: 1.5; }
+
+    /* Info box */
+    .info-box {
+      background: var(--info-bg);
+      border: 1px solid var(--info-border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--info-text);
+      margin-bottom: 1.75rem;
+      line-height: 1.65;
+    }
+    .info-box strong { display: block; margin-bottom: 6px; font-size: 14px; }
+    .info-box ol { padding-left: 18px; }
+    .info-box ol li { margin-bottom: 4px; }
+
+    /* Retention box */
+    .retention-box {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      font-size: 12px;
+      color: var(--text2);
+      margin-bottom: 1.75rem;
+      line-height: 1.65;
+    }
+    .retention-box strong { color: var(--text); display: block; margin-bottom: 6px; font-size: 13px; }
+    .retention-box ul { padding-left: 16px; }
+    .retention-box ul li { margin-bottom: 3px; }
+
+    /* Submit button */
+    .submit-btn {
+      width: 100%;
+      padding: 13px;
+      font-size: 15px;
+      font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--accent);
+      color: #0d0d12;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .submit-btn:hover { opacity: 0.88; }
+    .submit-btn:active { transform: scale(0.99); }
+    .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* Footer link */
+    .form-footer { font-size: 12px; color: var(--text3); text-align: center; margin-top: 1.25rem; }
+    .form-footer a { color: var(--text2); text-decoration: none; border-bottom: 1px solid var(--border2); padding-bottom: 1px; }
+    .form-footer a:hover { color: var(--text); }
+
+    /* Success */
+    .success { text-align: center; padding: 3.5rem 1rem; display: none; }
+    .success-icon { font-size: 44px; margin-bottom: 1rem; }
+    .success h2 { font-family: 'DM Serif Display', serif; font-size: 24px; margin-bottom: 0.5rem; }
+    .success p { font-size: 14px; color: var(--text2); margin-bottom: 0.25rem; }
+    .success .email-conf { color: var(--accent); font-size: 13px; margin-top: 4px; }
+    .back-btn { margin-top: 2rem; padding: 9px 22px; font-size: 14px; font-family: 'DM Sans', sans-serif; background: transparent; border: 1px solid var(--border2); border-radius: var(--radius); color: var(--text2); cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .back-btn:hover { border-color: var(--border2); color: var(--text); }
+
+    /* Spinner */
+    .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(13,13,18,0.3); border-top-color: #0d0d12; border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: -3px; margin-right: 8px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Error */
+    .field-error { font-size: 12px; color: var(--danger); margin-top: 5px; display: none; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text3);
+    }
+    footer a { color: var(--text3); text-decoration: none; border-bottom: 1px solid var(--border); }
+    footer a:hover { color: var(--text2); }
+
+    @media (max-width: 480px) {
+      main { margin: 1.5rem auto; }
+      .page-title { font-size: 26px; }
+      header { padding: 1rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="logo-moon">🌙</span>
+  <span class="logo-text">Delaluna Answers</span>
+  <span class="logo-badge">Support</span>
+</header>
+
+<main>
+  <h1 class="page-title">How can we help?</h1>
+  <p class="page-sub">Get support with the app, or request deletion of your account and data.</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" role="tab" aria-selected="true" onclick="switchTab('support')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+      Get support
+    </button>
+    <button class="tab" role="tab" aria-selected="false" onclick="switchTab('delete')">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+      Delete my data
+    </button>
+  </div>
+
+  <div id="form-content">
+
+    <!-- SUPPORT TAB -->
+    <div id="section-support" class="section active" role="tabpanel">
+      <form id="support-form" novalidate>
+        <div class="field">
+          <label for="s-name">Full name <span class="req">*</span></label>
+          <input type="text" id="s-name" name="entry.SUPPORT_NAME" placeholder="Your full name" autocomplete="name">
+          <p class="field-error" id="err-s-name">Please enter your name.</p>
+        </div>
+        <div class="field">
+          <label for="s-email">Email address <span class="req">*</span></label>
+          <input type="email" id="s-email" name="entry.SUPPORT_EMAIL" placeholder="you@example.com" autocomplete="email">
+          <p class="field-error" id="err-s-email">Please enter a valid email address.</p>
+        </div>
+        <div class="field">
+          <label for="s-category">Issue category <span class="req">*</span></label>
+          <select id="s-category" name="entry.SUPPORT_CATEGORY">
+            <option value="" disabled selected>Select a category</option>
+            <option>Technical bug</option>
+            <option>Account / login</option>
+            <option>Billing</option>
+            <option>Feature request</option>
+            <option>Other</option>
+          </select>
+          <p class="field-error" id="err-s-category">Please select a category.</p>
+        </div>
+        <div class="field">
+          <label for="s-desc">Describe your issue <span class="req">*</span></label>
+          <textarea id="s-desc" name="entry.SUPPORT_DESC" placeholder="Please describe what happened in as much detail as possible."></textarea>
+          <p class="field-error" id="err-s-desc">Please describe your issue.</p>
+        </div>
+        <div class="field">
+          <label for="s-device">Device model</label>
+          <input type="text" id="s-device" name="entry.SUPPORT_DEVICE" placeholder="e.g. iPhone 15 Pro, Samsung Galaxy S24">
+        </div>
+        <div class="field">
+          <label>Operating system</label>
+          <div class="radio-group" id="os-group">
+            <label class="radio-opt" onclick="selectRadio(this,'os-group')">
+              <input type="radio" name="entry.SUPPORT_OS" value="iOS / iPhone">
+              <span><span class="radio-label">iOS / iPhone</span></span>
+            </label>
+            <label class="radio-opt" onclick="selectRadio(this,'os-group')">
+              <input type="radio" name="entry.SUPPORT_OS" value="Android">
+              <span><span class="radio-label">Android</span></span>
+            </label>
+            <label class="radio-opt" onclick="selectRadio(this,'os-group')">
+              <input type="radio" name="entry.SUPPORT_OS" value="Other">
+              <span><span class="radio-label">Other</span></span>
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn" id="support-submit-btn">Submit support request</button>
+      </form>
+    </div>
+
+    <!-- DELETE TAB -->
+    <div id="section-delete" class="section" role="tabpanel">
+
+      <div class="info-box">
+        <strong>Steps to delete your account or data</strong>
+        <ol>
+          <li>Enter the email address linked to your Delaluna Answers account.</li>
+          <li>Choose whether to remove your data only, or your full account and all data.</li>
+          <li>Submit — we'll confirm your request at <strong>admin@delalunaanswers.com</strong>.</li>
+        </ol>
+      </div>
+
+      <form id="delete-form" novalidate>
+        <div class="field">
+          <label for="d-email">Email address on your account <span class="req">*</span></label>
+          <input type="email" id="d-email" name="entry.DELETE_EMAIL" placeholder="you@example.com" autocomplete="email">
+          <p class="field-error" id="err-d-email">Please enter a valid email address.</p>
+        </div>
+        <div class="field">
+          <label>What would you like removed? <span class="req">*</span></label>
+          <div class="radio-group" id="del-group">
+            <label class="radio-opt" onclick="selectRadio(this,'del-group')">
+              <input type="radio" name="entry.DELETE_TYPE" value="Data only — account remains active">
+              <span>
+                <span class="radio-label">My personal data only</span>
+                <span class="radio-desc">Your personal data is deleted. Your Delaluna Answers account stays active.</span>
+              </span>
+            </label>
+            <label class="radio-opt" onclick="selectRadio(this,'del-group')">
+              <input type="radio" name="entry.DELETE_TYPE" value="Account and all data — permanent deletion">
+              <span>
+                <span class="radio-label">My account and all associated data</span>
+                <span class="radio-desc">Your account and all personal data are permanently removed from our systems.</span>
+              </span>
+            </label>
+          </div>
+          <p class="field-error" id="err-del-group">Please select a removal type.</p>
+        </div>
+        <div class="field">
+          <label for="d-reason">Reason for request (optional)</label>
+          <textarea id="d-reason" name="entry.DELETE_REASON" style="min-height: 76px;" placeholder="Let us know why — we appreciate the feedback."></textarea>
+        </div>
+
+        <div class="retention-box">
+          <strong>Data retention — what gets deleted and what may be kept</strong>
+          <ul>
+            <li>Personal data is removed once your consent is revoked or a legitimate purpose no longer applies.</li>
+            <li>Data is stored via Firebase (Google). Deleting the app may also remove local data.</li>
+            <li>Some records (e.g. billing, fraud protection) may be retained as required by law.</li>
+            <li>We do not sell or lease your data at any time.</li>
+            <li>Questions? Email <a href="mailto:admin@delalunaanswers.com" style="color:var(--text2);">admin@delalunaanswers.com</a></li>
+          </ul>
+        </div>
+
+        <button type="submit" class="submit-btn" id="delete-submit-btn">Submit deletion request</button>
+      </form>
+
+      <p class="form-footer" style="margin-top:1.25rem;">
+        <a href="https://admindelalunaanswers-cloud.github.io/delaluna-legal/" target="_blank">Privacy Policy &amp; Terms of Service</a>
+        &nbsp;·&nbsp; Delaluna Answers LLC
+      </p>
+    </div>
+
+  </div>
+
+  <!-- SUCCESS STATE -->
+  <div class="success" id="success-state">
+    <div class="success-icon">✅</div>
+    <h2 id="success-title">Request submitted</h2>
+    <p id="success-body"></p>
+    <p class="email-conf" id="success-email"></p>
+    <button class="back-btn" onclick="resetForm()">Submit another request</button>
+  </div>
+
+</main>
+
+<footer>
+  © 2024 Delaluna Answers LLC &nbsp;·&nbsp;
+  <a href="https://admindelalunaanswers-cloud.github.io/delaluna-legal/">Legal &amp; Privacy Policy</a>
+  &nbsp;·&nbsp;
+  <a href="mailto:admin@delalunaanswers.com">admin@delalunaanswers.com</a>
+</footer>
+
+<script>
+  // ─────────────────────────────────────────────
+  // GOOGLE FORM CONFIGURATION
+  // Replace the FORM_IDs and entry.XXXXXX values
+  // with your actual Google Form IDs and field IDs.
+  // See README below for setup instructions.
+  // ─────────────────────────────────────────────
+
+  const SUPPORT_FORM_ACTION = 'https://docs.google.com/forms/d/e/SUPPORT_FORM_ID/formResponse';
+  const DELETE_FORM_ACTION  = 'https://docs.google.com/forms/d/e/DELETE_FORM_ID/formResponse';
+
+  // Field name mappings — replace with your actual entry IDs
+  const SUPPORT_FIELDS = {
+    name:     'entry.SUPPORT_NAME',
+    email:    'entry.SUPPORT_EMAIL',
+    category: 'entry.SUPPORT_CATEGORY',
+    desc:     'entry.SUPPORT_DESC',
+    device:   'entry.SUPPORT_DEVICE',
+    os:       'entry.SUPPORT_OS',
+  };
+
+  const DELETE_FIELDS = {
+    email:  'entry.DELETE_EMAIL',
+    type:   'entry.DELETE_TYPE',
+    reason: 'entry.DELETE_REASON',
+  };
+
+  // ─────────────────────────────────────────────
+
+  function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach((t, i) => {
+      const active = (i === 0 && tab === 'support') || (i === 1 && tab === 'delete');
+      t.classList.toggle('active', active);
+      t.setAttribute('aria-selected', active);
+    });
+    document.getElementById('section-support').classList.toggle('active', tab === 'support');
+    document.getElementById('section-delete').classList.toggle('active', tab === 'delete');
+  }
+
+  function selectRadio(el, group) {
+    document.querySelectorAll('#' + group + ' .radio-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function showError(id, show) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = show ? 'block' : 'none';
+  }
+
+  function isValidEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  }
+
+  function setLoading(btn, loading) {
+    if (loading) {
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>Submitting…';
+    } else {
+      btn.disabled = false;
+      btn.innerHTML = btn.dataset.label;
+    }
+  }
+
+  async function postToGoogle(action, fields, data) {
+    const body = new URLSearchParams();
+    for (const [key, entryId] of Object.entries(fields)) {
+      if (data[key]) body.append(entryId, data[key]);
+    }
+    // Google Forms CORS workaround — fetch with no-cors
+    await fetch(action, { method: 'POST', mode: 'no-cors', body });
+  }
+
+  // Support form submit
+  document.getElementById('support-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const name     = document.getElementById('s-name').value.trim();
+    const email    = document.getElementById('s-email').value.trim();
+    const category = document.getElementById('s-category').value;
+    const desc     = document.getElementById('s-desc').value.trim();
+    const device   = document.getElementById('s-device').value.trim();
+    const os       = document.querySelector('input[name="entry.SUPPORT_OS"]:checked');
+
+    let valid = true;
+    showError('err-s-name',     !name);     if (!name)               valid = false;
+    showError('err-s-email',    !isValidEmail(email)); if (!isValidEmail(email)) valid = false;
+    showError('err-s-category', !category); if (!category)           valid = false;
+    showError('err-s-desc',     !desc);     if (!desc)               valid = false;
+    if (!valid) return;
+
+    const btn = document.getElementById('support-submit-btn');
+    btn.dataset.label = btn.innerHTML;
+    setLoading(btn, true);
+
+    try {
+      await postToGoogle(SUPPORT_FORM_ACTION, SUPPORT_FIELDS, {
+        name, email, category, desc,
+        device: device || 'Not provided',
+        os: os ? os.value : 'Not specified',
+      });
+      showSuccess(
+        'Support request submitted',
+        "We've received your message and will be in touch shortly.",
+        email
+      );
+    } catch (err) {
+      alert('Something went wrong. Please email admin@delalunaanswers.com directly.');
+      setLoading(btn, false);
+    }
+  });
+
+  // Delete form submit
+  document.getElementById('delete-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const email   = document.getElementById('d-email').value.trim();
+    const delType = document.querySelector('input[name="entry.DELETE_TYPE"]:checked');
+    const reason  = document.getElementById('d-reason').value.trim();
+
+    let valid = true;
+    showError('err-d-email',    !isValidEmail(email)); if (!isValidEmail(email)) valid = false;
+    showError('err-del-group',  !delType);             if (!delType)             valid = false;
+    if (!valid) return;
+
+    const btn = document.getElementById('delete-submit-btn');
+    btn.dataset.label = btn.innerHTML;
+    setLoading(btn, true);
+
+    try {
+      await postToGoogle(DELETE_FORM_ACTION, DELETE_FIELDS, {
+        email,
+        type:   delType.value,
+        reason: reason || 'No reason provided',
+      });
+      showSuccess(
+        'Deletion request submitted',
+        delType.value.includes('Account')
+          ? 'Your account and all data will be permanently deleted. Expect a confirmation email within 2 business days.'
+          : 'Your personal data will be removed. Your account will remain active.',
+        email
+      );
+    } catch (err) {
+      alert('Something went wrong. Please email admin@delalunaanswers.com directly.');
+      setLoading(btn, false);
+    }
+  });
+
+  function showSuccess(title, body, email) {
+    document.getElementById('form-content').style.display = 'none';
+    const s = document.getElementById('success-state');
+    s.style.display = 'block';
+    document.getElementById('success-title').textContent = title;
+    document.getElementById('success-body').textContent  = body;
+    document.getElementById('success-email').textContent = 'Confirmation will be sent to ' + email;
+  }
+
+  function resetForm() {
+    document.getElementById('form-content').style.display = 'block';
+    document.getElementById('success-state').style.display = 'none';
+    document.getElementById('support-form').reset();
+    document.getElementById('delete-form').reset();
+    document.querySelectorAll('.radio-opt').forEach(o => o.classList.remove('selected'));
+    document.querySelectorAll('.field-error').forEach(e => e.style.display = 'none');
+    const supportBtn = document.getElementById('support-submit-btn');
+    const deleteBtn  = document.getElementById('delete-submit-btn');
+    supportBtn.disabled = false;
+    deleteBtn.disabled  = false;
+    supportBtn.innerHTML = 'Submit support request';
+    deleteBtn.innerHTML  = 'Submit deletion request';
+  }
+</script>
+
+<!--
+═══════════════════════════════════════════════════════
+  SETUP INSTRUCTIONS — READ BEFORE PUBLISHING
+═══════════════════════════════════════════════════════
+
+1. CREATE TWO GOOGLE FORMS at forms.google.com
+
+   FORM 1 — "Delaluna Answers Support"
+   Fields (Short answer unless noted):
+   - Full name
+   - Email address
+   - Issue category (Dropdown: Technical bug / Account-Login / Billing / Feature request / Other)
+   - Issue description (Paragraph)
+   - Device model
+   - Operating system (Multiple choice: iOS/iPhone / Android / Other)
+
+   FORM 2 — "Delaluna Answers — Account & Data Deletion"
+   Fields:
+   - Email address
+   - Removal type (Multiple choice: Data only... / Account and all data...)
+   - Reason for request (Paragraph)
+
+2. GET THE FORM ACTION URLs
+   For each form: click the eye icon (Preview) → right-click the page →
+   View Page Source → search for "action=" → copy the URL that looks like:
+   https://docs.google.com/forms/d/e/1FAIpQLSe.../formResponse
+
+3. GET THE ENTRY IDs
+   In the same page source, search for "entry." — each field has an
+   id like entry.123456789. Match each to the field order above.
+
+4. PASTE INTO THIS FILE
+   Replace in the <script> section:
+   - SUPPORT_FORM_ACTION  → your Form 1 action URL
+   - DELETE_FORM_ACTION   → your Form 2 action URL
+   - entry.SUPPORT_NAME   → actual entry ID for Full name
+   - entry.SUPPORT_EMAIL  → actual entry ID for Email (form 1)
+   - entry.SUPPORT_CATEGORY → actual entry ID for Category
+   - entry.SUPPORT_DESC   → actual entry ID for Description
+   - entry.SUPPORT_DEVICE → actual entry ID for Device
+   - entry.SUPPORT_OS     → actual entry ID for OS
+   - entry.DELETE_EMAIL   → actual entry ID for Email (form 2)
+   - entry.DELETE_TYPE    → actual entry ID for Removal type
+   - entry.DELETE_REASON  → actual entry ID for Reason
+
+5. DEPLOY TO GITHUB PAGES
+   - Create a new repo: admindelalunaanswers-cloud / delaluna-support
+   - Upload this file as index.html
+   - Go to Settings → Pages → Deploy from main branch / root
+   - Your URL: https://admindelalunaanswers-cloud.github.io/delaluna-support/
+
+═══════════════════════════════════════════════════════
+-->
+
+</body>
+</html>
